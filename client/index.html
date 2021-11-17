@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-    <title>Untitled</title>
+    <title>Demo ETH Private Network</title>
     <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="assets/css/styles.css">
 </head>
@@ -17,9 +17,19 @@
         <div class="card">
             <div class="card-body">
                 <h6 class="text-muted card-subtitle mb-2">Enter a string to the input below</h6>
-                <div class="input-group" id="inputgroup"><input class="form-control" id="username" type="text"><button class="btn btn-primary" id="setName" type="button">Save String</button><button class="btn btn-primary" id="getName" type="button">Get String</button></div>
-                <div class="input-group" id="inputgroup"><span class="input-group-text" id="output">Display Output</span><input class="form-control" type="text" readonly=""></div>
-                <div class="input-group" id="inputgroup"><span class="input-group-text" id="errorHolder">Error Occured</span><input class="form-control" type="text" readonly=""></div>
+                <div class="input-group" id="inputgroup">
+                    <input class="form-control" id="stringLiteral" type="text">
+                    <button class="btn btn-primary" id="setName" type="button">Save String</button>
+                    <button class="btn btn-primary" id="getName" type="button">Get String</button>
+                </div>
+                <div class="input-group" id="inputgroup">
+                    <span class="input-group-text" id="span">Display Output</span>
+                    <input class="form-control" id="output" type="text" readonly="">
+                </div>
+                <div class="input-group" id="inputgroup">
+                    <span class="input-group-text" id="span">Error Occured</span>
+                    <input class="form-control" id="errorHolder" type="text" readonly="">
+                </div>
             </div>
         </div>
     </div>

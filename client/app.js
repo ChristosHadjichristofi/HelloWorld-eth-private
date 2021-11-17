@@ -3,9 +3,7 @@ const TruffleContract = require('truffle-contract');
 const request = require('request');
 
 App = {
-/*==================================================================
-    DEFINE ESSENTIALS
-==================================================================*/
+    /**  essential definitions **/
     web3Provider: null,
     contracts: {},
     currentAccount:{},
@@ -34,96 +32,84 @@ App = {
  
     // Binds button clicks to the repective functions
     bindEvents: function() { 
-        $('#setName').click(App.ExeInputUser);
-        $('#getName').click(App.CallDispUser);
+        $('#setName').click(App.InputString);
+        $('#getName').click(App.RetrieveString);
     },
 
     // Defines functionality for OUTPUT label
     showMessage: function (msg){
-        $('#output').html(msg.toString());
-        $('#output').show();
-        $('#errorHolder').hide();
+        document.getElementById("output").value = msg.toString();
+        document.getElementById("errorHolder").value = "";
     },
  
     // Defines functionality for ERROR label
-    showError: function(err){
-        $('#errorHolder').html(err.toString());
-        $('#errorHolder').show();
-        $('#output').hide();
+    showError: function(err) {
+        document.getElementById("errorHolder").value = err.toString();
+        document.getElementById("output").value = "";
     },
 
-/*==================================================================
-    USERNAME SUBMISSION
-==================================================================*/
-    ExeInputUser: function (){
-        let NAME = $('#username').val();
-        console.log("In app.js ExeInputUser", NAME);
+    /** string submission **/
+    InputString: function (){
+        let string = document.getElementById("stringLiteral").value;
+
+        document.getElementById("stringLiteral").value = "";
+        console.log("In app.js InputString", string);
   
-        if(NAME) {
+        if(string) {
             // Retrieves user account to perform operations
             web3.eth.getAccounts((error,accounts) => {
                 if (error) {
-                    console.log("ERROR getAccounts ExeInputUser");
+                    console.log("[ERROR]: fn -> InputString (getAccounts)");
                     App.showError(error);
                 }
                 App.currentAccount = accounts[0];
     
-                // Submits name to the blockchain network
+                // Submits string to the blockchain network
                 App.contracts.helloworld.deployed()
                 .then(obj => {
-                    return obj.inputUser.sendTransaction(NAME, {from:App.currentAccount});
+                    return obj.inputUser.sendTransaction(string, { from : App.currentAccount });
                 })
                 .then(result => {
                     console.log(result);
-                    App.showMessage("Name submitted as a transaction");
+                    App.showMessage("String submitted as a transaction");
                 })
                 .catch(error => {
-                    console.log("ERROR ExeInputUser");
+                    console.log("[ERROR]: fn -> InputString");
                     App.showError(error);
                 });
             })
         }
         else {
-            App.showError("Valid name is required !");
+            App.showError("Valid string is required!")
         }
     },
 
-/*==================================================================
- USERNAME RETRIEVAL
-==================================================================*/
-    CallDispUser : function (){
-        let NAME = $('#username').val();
-        if(NAME) {
-            console.log("In app.js CallDispUser");
-            web3.eth.getAccounts((error,accounts) => {
-                if (error){
-                    console.log("ERROR getAccounts CallDispUser");
-                    App.showError(error);
-                }
-                App.currentAccount = accounts[0];
-                
-                App.contracts.helloworld.deployed()
-                .then(instance => {
-                    return instance.dispUser.call({from:App.currentAccount});
-                })
-                .then(result => {
-                    console.log("CallDispUser returns : ", result);
-                    App.showMessage(result);
-                })
-                .catch(error => {
-                    console.log("ERROR CallRegStatus");
-                    App.showError(error);
-                })
+    /** string retrieval **/
+    RetrieveString : function (){
+        console.log("In app.js RetrieveString");
+        web3.eth.getAccounts((error,accounts) => {
+            if (error){
+                console.log("[ERROR]: fn -> RetrieveString (getAccounts)");
+                App.showError(error);
+            }
+            App.currentAccount = accounts[0];
+            
+            App.contracts.helloworld.deployed()
+            .then(instance => {
+                return instance.dispUser.call({ from : App.currentAccount });
             })
-        }
-        else {
-            App.showError("No output as no name is entered");
-        }
+            .then(result => {
+                console.log("RetrieveString returns : ", result);
+                App.showMessage(result);
+            })
+            .catch(error => {
+                console.log("[ERROR]: fn -> CallRegStatus");
+                App.showError(error);
+            })
+        })
     },
 
-/*==================================================================
- INITIALISATION : Intialises web3 when webpage is loaded onto browser
-==================================================================*/
+    /** initialize web3 when webpage is loaded **/
     init : async function (){
         await App.initWeb3();
         console.log("In app.js init, initiated App");

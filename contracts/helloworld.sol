@@ -11,7 +11,7 @@ contract HelloWorld {
     
     // Validated that the string variable (name) holds the updated value
     function dispUser() public view returns(string){
-        return (append("Hello world! My name is ", name));
+        return (append("Hello world! The string retrieved is: ", name));
     }
     
     // Appends 2 strings a, b
