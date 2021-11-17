@@ -1,33 +1,31 @@
 <!DOCTYPE html>
 <html lang="en">
- <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Sample Dapp</title>
-  <link rel="stylesheet" type="text/css" href="main.css">
- </head>
- <h2>Hello World Ethereum Dapp</h2>
- <body>
-  <div>
-   <div class="container">
-    <label for="username" class="col-lg-2 control-label">Enter your name :</label>
-    <input id="username" type="text"/>
-   </div>
-   <div>
-    <button id="setName">Save Name</button>   
-    <button id="getName">Get Name</button>
-   </div>
-  </div>
-<div class="container">
-   <div><label class="center-label" for="output">OUTPUT --> </label>
-   <div id="output">None</div></div>
-  </div>
-<div class="container">
-   <div><label class="center-label" for="errorHolder">ERROR --> </label>
-   <div id="errorHolder">None</div></div>
-  </div>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-  <script src="dist/bundle.js"></script>
- </body>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>Untitled</title>
+    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/css/styles.css">
+</head>
+
+<body>
+    <header>
+        <h2 class="text-center text-dark" id="title">Demo Dapp with Eth Private Network</h2>
+    </header>
+    <div class="container">
+        <div class="card">
+            <div class="card-body">
+                <h6 class="text-muted card-subtitle mb-2">Enter a string to the input below</h6>
+                <div class="input-group" id="inputgroup"><input class="form-control" id="username" type="text"><button class="btn btn-primary" id="setName" type="button">Save String</button><button class="btn btn-primary" id="getName" type="button">Get String</button></div>
+                <div class="input-group" id="inputgroup"><span class="input-group-text" id="output">Display Output</span><input class="form-control" type="text" readonly=""></div>
+                <div class="input-group" id="inputgroup"><span class="input-group-text" id="errorHolder">Error Occured</span><input class="form-control" type="text" readonly=""></div>
+            </div>
+        </div>
+    </div>
+    <script src="assets/bootstrap/js/bootstrap.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="dist/bundle.js"></script>
+</body>
+
 </html>

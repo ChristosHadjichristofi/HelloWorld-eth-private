@@ -1,0 +1,23 @@
+#getName {
+  margin-left: 5px;
+}
+
+#setName {
+  margin-left: 5px;
+  margin-right: 5px;
+}
+
+#title {
+  margin-bottom: 40px;
+}
+
+#inputgroup {
+  margin-bottom: 10px;
+}
+
+#output, #errorHolder {
+  width: 140px;
+  color: white;
+  background-color: var(--bs-primary);
+}
+
