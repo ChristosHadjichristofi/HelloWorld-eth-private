@@ -1,0 +1,5 @@
+# environment variables file
+.env
+node_modules
+client/dist
+build

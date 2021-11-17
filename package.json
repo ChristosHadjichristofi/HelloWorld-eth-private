@@ -1,0 +1,27 @@
+{
+  "name": "myfirstdapp",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server/main.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "dev": "node_modules/.bin/webpack && node server/main.js",
+    "webpack": "node_modules/.bin/webpack --watch",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server/main.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "truffle-contract": "^4.0.0-beta.2",
+    "web3": "^1.0.0-beta.36",
+    "webpack": "^4.41.4",
+    "webpack-cli": "^4.9.1"
+  },
+  "dependencies": {
+    "dotenv": "^10.0.0",
+    "express": "^4.17.1"
+  }
+}
