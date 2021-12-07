@@ -1,7 +1,7 @@
 # Learn to Build Decentralized Apps with Private Ethereum Blockchain
 
 ## Information
-* This project was created by following [this](Followed [this](https://medium.com/coinmonks/dapp-on-a-private-ethereum-network-1-c8b80695e049) tutorial.
+* This project was created by following [this](https://medium.com/coinmonks/dapp-on-a-private-ethereum-network-1-c8b80695e049) tutorial.
 * The purpose of creating this project is to learn all about dapps that work on top of a private ethereum network.
 
 ## Use Truffle
