@@ -34,6 +34,7 @@ App = {
     bindEvents: function() { 
         $('#setName').click(App.InputString);
         $('#getName').click(App.RetrieveString);
+        $('#getAll').click(App.RetrieveAllStrings);
     },
 
     // Defines functionality for OUTPUT label
@@ -67,11 +68,12 @@ App = {
                 // Submits string to the blockchain network
                 App.contracts.helloworld.deployed()
                 .then(obj => {
-                    return obj.inputUser.sendTransaction(string, { from : App.currentAccount });
+                    console.log(obj);
+                    return obj.add.sendTransaction(string, { from : App.currentAccount });
                 })
                 .then(result => {
-                    console.log(result);
-                    App.showMessage("String submitted as a transaction");
+                console.log(result);
+                App.showMessage("String submitted as a transaction");
                 })
                 .catch(error => {
                     console.log("[ERROR]: fn -> InputString");
@@ -96,10 +98,37 @@ App = {
             
             App.contracts.helloworld.deployed()
             .then(instance => {
-                return instance.dispUser.call({ from : App.currentAccount });
+                console.log("instance ", instance)
+                return instance.get.call({ from : App.currentAccount });
             })
             .then(result => {
                 console.log("RetrieveString returns : ", result);
+                App.showMessage(result);
+            })
+            .catch(error => {
+                console.log("[ERROR]: fn -> CallRegStatus");
+                App.showError(error);
+            })
+        })
+    },
+
+    /** string retrieval **/
+    RetrieveAllStrings : function (){
+        console.log("In app.js RetrieveAllStrings");
+        web3.eth.getAccounts((error,accounts) => {
+            if (error){
+                console.log("[ERROR]: fn -> RetrieveAllStrings (getAccounts)");
+                App.showError(error);
+            }
+            App.currentAccount = accounts[0];
+            
+            App.contracts.helloworld.deployed()
+            .then(instance => {
+                console.log("instance ", instance)
+                return instance.getAll.call({ from : App.currentAccount });
+            })
+            .then(result => {
+                console.log("RetrieveAllStrings returns : ", result);
                 App.showMessage(result);
             })
             .catch(error => {

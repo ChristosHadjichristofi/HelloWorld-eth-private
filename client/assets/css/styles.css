@@ -1,8 +1,13 @@
-#getName {
+/* #getName {
   margin-left: 5px;
-}
+} */
 
 #setName {
+  margin-left: 5px;
+  margin-right: 5px;
+}
+
+#getAll {
   margin-left: 5px;
   margin-right: 5px;
 }

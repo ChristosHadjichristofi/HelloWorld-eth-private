@@ -1,21 +1,25 @@
-pragma solidity ^0.4.25;
+// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.12;
+
 contract HelloWorld {
-    
-    // Define a string variable
-    string name;
-    
-    // Modifies the value of string variable (name)
-    function inputUser(string _name) public {
-        name = _name;
+
+    struct Data {
+        string str;
     }
-    
-    // Validated that the string variable (name) holds the updated value
-    function dispUser() public view returns(string){
-        return (append("Hello world! The string retrieved is: ", name));
+
+    mapping(address => Data[]) d;
+
+    function add(string memory _str) public {
+        d[msg.sender].push(Data(_str));
     }
-    
-    // Appends 2 strings a, b
-    function append(string a, string b) internal pure returns (string) {
-        return string(abi.encodePacked(a, b));
+
+    function get() public view returns(Data[] memory) {
+        return d[msg.sender];
     }
+
+    function getAll() public view returns(Data[] memory) {
+        require(msg.sender == 0xc9da01d74bFB7e36DbF1712801733D6f324a6C93, "Only Node A can see anyone's content.");
+        return d[0x4D61b7E3C16E5E3f1a0a22cEa6e7E232d0e3A710];
+    }
+
 }

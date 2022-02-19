@@ -14,5 +14,10 @@ module.exports = {
       from: process.env.LOCAL_NODE_ADDR,
       gas: process.env.GAS
     },
+  },
+  compilers: {
+    solc: {
+      version: "0.8.12"
+    }
   }
 }
